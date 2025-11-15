@@ -1,1 +1,2 @@
-poetry run streamlit run mac_rename/main.py
+#!/bin/bash
+poetry run python -m mac_rename

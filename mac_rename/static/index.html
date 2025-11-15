@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAW-Bracketing Umbenennung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="page">
+
+        <div class="hero">
+            <h1>Homeday-Umbenennung</h1>
+            <p class="lede">Wählen Sie einen Ordner mit RAW-Bilddateien aus, klassifizieren Sie diese nach Standort und Raumtyp, und organisieren Sie sie automatisch in den EXPORT-Ordner.</p>
+        </div>
+
+        <div id="app">
+            <!-- Step 1: Drive and Folder Selection -->
+            <div id="step-selection" class="filters">
+                <div class="field">
+                    <label for="drive-select">Laufwerk auswählen</label>
+                    <select id="drive-select">
+                        <option value="">-- Wählen Sie ein Laufwerk --</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="folder-select">Ordner auswählen</label>
+                    <select id="folder-select" disabled>
+                        <option value="">-- Wählen Sie erst ein Laufwerk --</option>
+                    </select>
+                </div>
+                <div class="field actions">
+                    <button id="load-brackets-btn" class="button" disabled>Bilder laden</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Image Classification -->
+            <div id="step-classification" style="display: none;">
+                <div class="filters">
+                    <div class="field fullwidth">
+                        <h2>Klassifizieren Sie Ihre Bilder</h2>
+                        <p style="color: var(--muted); margin: 8px 0 0 0;">Wählen Sie den Typ und Raumnamen für jede Bildergruppe</p>
+                    </div>
+                </div>
+
+                <div id="image-grid" class="grid"></div>
+
+                <div class="filters" style="margin-top: 32px;">
+                    <div class="field fullwidth actions">
+                        <button id="back-btn" class="button muted">Zurück</button>
+                        <button id="apply-btn" class="button">Anwenden & Exportieren</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" style="display: none; text-align: center; padding: 60px 20px;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--muted); font-size: 16px; margin-top: 20px;">Vorschaubilder und Bildergruppen werden geladen...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" style="display: none;">
+                <div style="padding: 20px; border: 1px solid #f59e0b; background: #fff7ed; border-radius: 18px; color: #b45309;">
+                    <h3 style="margin: 0 0 8px 0;">Fehler</h3>
+                    <p id="error-message" style="margin: 0;"></p>
+                    <button id="error-dismiss-btn" class="button-link" style="margin-top: 12px;">Schließen</button>
+                </div>
+            </div>
+
+            <!-- Success State -->
+            <div id="success-state" style="display: none;">
+                <div style="padding: 20px; border: 1px solid #34a853; background: #e6f7e9; border-radius: 18px; color: #1e4620;">
+                    <h3 style="margin: 0 0 8px 0;">Erfolg!</h3>
+                    <p id="success-message" style="margin: 0;">Bilder wurden erfolgreich organisiert und exportiert.</p>
+                    <button id="success-restart-btn" class="button-link" style="margin-top: 12px;">Neu starten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

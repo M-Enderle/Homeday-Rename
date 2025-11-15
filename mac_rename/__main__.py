@@ -1,10 +1,17 @@
-from streamlit.web import cli as stcli
-import sys
+import uvicorn
 import os
-
-# get path of current file
-path = os.path.dirname(os.path.abspath(__file__))
+import sys
+import logging
 
 if __name__ == '__main__':
-    sys.argv = ["streamlit", "run", os.path.join(path, "main.py")]
-    sys.exit(stcli.main())
+    # Get the directory of the current file
+    path = os.path.dirname(os.path.abspath(__file__))
+    
+    # Run FastAPI application with uvicorn
+    uvicorn.run(
+        "mac_rename.main:app",
+        host="127.0.0.1",
+        port=8000,
+        reload=True,
+        log_level="info"
+    )

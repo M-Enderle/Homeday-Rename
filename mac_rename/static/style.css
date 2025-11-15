@@ -1,0 +1,393 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --accent: #111111;
+  --border: #e5e7eb;
+  --pill: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin-bottom: 40px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header nav a {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 18px;
+}
+
+.hero {
+  margin-bottom: 40px;
+  max-width: 640px;
+  margin-top: 50px;
+}
+
+.hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 8vw, 72px);
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+.hero .lede {
+  margin-top: 16px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 42px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(17, 17, 17, 0.02);
+  font-family: "Inter", sans-serif;
+}
+
+.filters label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.filters input,
+.filters select,
+.filters textarea {
+  width: 100%;
+  /* slightly larger touch targets */
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  /* ensure a consistent, tappable control height across browsers */
+  min-height: 44px;
+}
+
+.filters textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.filters .field.fullwidth {
+  grid-column: 1 / -1;
+}
+
+.filters .field.fullwidth h2 {
+  margin: 0;
+  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.01em;
+}
+
+.filters .actions {
+  display: flex;
+  gap: 12px;
+  /* center vertically so buttons align with selects */
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+/* more specific rule for the case where the actions element also has the .field class
+   (matches the markup `class="field actions"`) so it cannot be easily overridden */
+.filters .field.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Force the actions element to always span the full width of the filters grid.
+   Use a direct child selector and !important to avoid accidental overrides at
+   specific breakpoints or by browser styles. */
+.filters > .field.actions,
+.filters > .actions {
+  grid-column: 1 / -1 !important;
+  align-items: center !important;
+}
+
+.filters .actions .button {
+  width: auto;
+}
+
+.button-link {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.button-link:hover {
+  color: var(--text);
+}
+
+.button {
+  /* ensure button sits centered inside .actions */
+  align-self: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.12);
+}
+
+.button.muted {
+  background: transparent;
+  color: var(--text);
+}
+
+.button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.card {
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease;
+  padding: 18px 20px 22px;
+  gap: 14px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card .image {
+  display: block;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--pill);
+  border-radius: 16px;
+  margin: -18px -20px 0 -20px;
+  width: calc(100% + 40px);
+}
+
+.card .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.card:hover .image img {
+  transform: scale(1.03);
+}
+
+.card-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-controls button {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: var(--pill);
+  color: var(--text);
+  border-radius: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: all 0.15s ease;
+}
+
+.card-controls button:hover {
+  background: var(--text);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+.card-controls select,
+.card-controls input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+
+.card-controls label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.card-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+  padding: 0 16px;
+}
+
+.site-footer {
+  margin-top: 80px;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .filters .field.fullwidth {
+    grid-column: 1;
+  }
+
+  .filters .actions {
+    flex-direction: column;
+  }
+
+  .filters .actions .button {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
+
+/* Prevent the grid from creating 3 columns in intermediate sizes where the actions
+   element (third child) would otherwise be placed into the first row and break
+   alignment. Force 2 columns between small and desktop widths so controls stay
+   visually consistent up to the page max-width (960px). */
+@media (min-width: 641px) and (max-width: 959px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+/* At 960px and above, ensure consistent alignment by forcing 2 columns
+   to prevent misalignment of the selection window. */
+@media (min-width: 960px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
